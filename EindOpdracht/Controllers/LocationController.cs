@@ -8,10 +8,10 @@ namespace EindOpdracht.Controllers
     [ApiVersion("1.0")]
     [Route("api/[controller]")]
     [ApiController]
-    public class LocationsController : Controller
+    public class LocationController : Controller
     {
         private readonly EindOpdrachtDbContext _context;
-        public LocationsController(EindOpdrachtDbContext context)
+        public LocationController(EindOpdrachtDbContext context)
         {
             _context = context;
         }

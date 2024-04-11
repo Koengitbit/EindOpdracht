@@ -1,5 +1,6 @@
 ﻿using EindOpdracht.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace EindOpdracht.Data
 {
@@ -11,6 +12,7 @@ namespace EindOpdracht.Data
         }
         //DbSets under here
         public DbSet<Locations> Locations { get; set; }
+
 
         //Seeding data here
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -26,7 +28,7 @@ namespace EindOpdracht.Data
                     Rooms = 5,
                     NumberOfGuests = 5,
                     PricePerDay = 5,
-                    Features = (Features.Smoking | Features.PetsAllowed | Features.Wifi), // multiple enum flags
+                    Features = Features.Smoking, // Can hold multiple enums potentially (?)
                     LocationType = LocationType.Hotel // Single enum
                 }
                 );

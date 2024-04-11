@@ -1,6 +1,7 @@
 using EindOpdracht.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Reflection;
@@ -8,7 +9,8 @@ using WeekOpdracht;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<EindOpdrachtDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("EindOpdrachtDbContext") ?? throw new InvalidOperationException("Connection string 'EindOpdrachtDbContext' not found.")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("EindOpdrachtDbContext")));
+
 
 // Add services to the container.
 builder.Services.AddControllers();
@@ -51,7 +53,7 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 // Might need to change this Cors to the one in the weekly exercises (we'll see)
-app.UseCors("AllowWebApp");
+app.UseCors(options => options.AllowAnyHeader().AllowAnyOrigin());
 
 app.MapControllers();
 
