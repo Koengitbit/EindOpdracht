@@ -18,7 +18,7 @@ namespace EindOpdracht.Controllers.V2
         // GET: api/Locations
         [HttpGet]
         [Route("")]
-        public async Task<ActionResult<IEnumerable<Locations>>> GetLocation()
+        public async Task<ActionResult<IEnumerable<Location>>> GetLocation()
         {
             return await _context.Locations.ToListAsync();
         }

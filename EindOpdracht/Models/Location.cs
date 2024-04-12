@@ -20,7 +20,7 @@
         Hotel,
         House
     }
-    public class Locations
+    public class Location
     {
         public int Id { get; set; }
         public string Title { get; set; }
@@ -30,6 +30,9 @@
         public int NumberOfGuests { get; set; }
         public float PricePerDay { get; set; }
         public Features Features { get; set; }
-        public LocationType LocationType { get; set;}
+        public LocationType LocationType { get; set; }
+        public Image Images { get; set; } 
+        public Reservation Reservations { get; set; }
+        public Landlord Landlord { get; set; }
     }
 }

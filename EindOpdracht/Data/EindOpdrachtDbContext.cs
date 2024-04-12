@@ -11,15 +11,15 @@ namespace EindOpdracht.Data
 
         }
         //DbSets under here
-        public DbSet<Locations> Locations { get; set; }
+        public DbSet<Location> Locations { get; set; }
 
 
         //Seeding data here
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // Model builder.entity etc hier
-            modelBuilder.Entity<Locations>().HasData(
-                new Locations
+            modelBuilder.Entity<Location>().HasData(
+                new Location
                 {
                     Id = 1,
                     Title = "De Boerenhoeve",
