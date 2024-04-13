@@ -31,8 +31,8 @@
         public float PricePerDay { get; set; }
         public Features Features { get; set; }
         public LocationType LocationType { get; set; }
-        public Image Images { get; set; } 
-        public Reservation Reservations { get; set; }
+        public ICollection<Image> Images { get; } = new List<Image>();
+        public ICollection<Reservation> Reservations { get; } = new List<Reservation>();
         public Landlord Landlord { get; set; }
     }
 }

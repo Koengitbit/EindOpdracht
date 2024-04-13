@@ -1,3 +1,4 @@
+using Asp.Versioning;
 using EindOpdracht.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
