@@ -1,4 +1,6 @@
-﻿namespace EindOpdracht.Models
+﻿using Microsoft.Extensions.Hosting;
+
+namespace EindOpdracht.Models
 {
     [Flags]
     public enum Features
@@ -31,8 +33,9 @@
         public float PricePerDay { get; set; }
         public Features Features { get; set; }
         public LocationType LocationType { get; set; }
-        public ICollection<Image> Images { get; } = new List<Image>();
-        public ICollection<Reservation> Reservations { get; } = new List<Reservation>();
-        public Landlord Landlord { get; set; }
+        public ICollection<Image>? Images { get; set; }
+        public ICollection<Reservation>? Reservations { get; set; }
+        public int? LandlordId { get; set; }
+        public Landlord? Landlord { get; set; }
     }
 }

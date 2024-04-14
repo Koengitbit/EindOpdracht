@@ -6,31 +6,30 @@ using EindOpdracht.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace EindOpdracht.Controllers.V2
+namespace EindOpdracht.Controllers
 {
-    [ApiVersion("2.0")]
+    [ApiVersion("1.0")]
     [Route("api/[controller]")]
     [ApiController]
-    public class LocationsController : Controller
+    public class LocationsController : ControllerBase
     {
         private readonly EindOpdrachtDbContext _context;
         private readonly IMapper _mapper;
         public LocationsController(EindOpdrachtDbContext context, IMapper mapper)
         {
-            _mapper = mapper;
             _context = context;
+            _mapper = mapper;
         }
         // GET: api/Locations
         [HttpGet]
-        [Route("")]
-        [Route("GetNew")]
+        [Route("GetAll")]
         public async Task<ActionResult<IEnumerable<Location>>> GetLocation()
         {
             var locations = await _context.Locations
-                                  .Include(l => l.Images) // Make sure to include the Images
-                                  .Include(lan => lan.Landlord)
-                                  .ToListAsync();
-            var locationDTOs = _mapper.Map<LocationV2DTO[]>(locations);
+                .Include(l => l.Images)
+                .Include(Land => Land.Landlord)
+                .ToListAsync();
+            var locationDTOs = _mapper.Map<LocationDTO[]>(locations);
             return Ok(locationDTOs);
         }
     }

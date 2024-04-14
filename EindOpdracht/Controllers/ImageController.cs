@@ -1,4 +1,5 @@
 ﻿using Asp.Versioning;
+using AutoMapper;
 using EindOpdracht.Data;
 using EindOpdracht.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -9,20 +10,20 @@ namespace EindOpdracht.Controllers
     [ApiVersion("1.0")]
     [Route("api/[controller]")]
     [ApiController]
-    public class LocationController : Controller
+    public class ImageController : ControllerBase
     {
         private readonly EindOpdrachtDbContext _context;
-        public LocationController(EindOpdrachtDbContext context)
+        public ImageController(EindOpdrachtDbContext context)
         {
             _context = context;
         }
-        // GET: api/Locations
+        // GET: api/Images
         [HttpGet]
         [Route("")]
         [Route("GetAll")]
-        public async Task<ActionResult<IEnumerable<Location>>> GetLocation()
+        public async Task<ActionResult<IEnumerable<Image>>> GetImage()
         {
-            return await _context.Locations.ToListAsync();
+            return await _context.Images.ToListAsync();
         }
     }
 }

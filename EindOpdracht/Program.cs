@@ -1,5 +1,7 @@
 using Asp.Versioning;
+using AutoMapper;
 using EindOpdracht.Data;
+using EindOpdracht.Profiles;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -14,7 +16,12 @@ builder.Services.AddDbContext<EindOpdrachtDbContext>(options =>
 
 
 // Add services to the container.
-builder.Services.AddControllers();
+/*builder.Services.AddControllers();*/
+builder.Services.AddControllers().AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
+});
+builder.Services.AddAutoMapper(typeof(LocationProfile),typeof(LocationV2Profile));
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
