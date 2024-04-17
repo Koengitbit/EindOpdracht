@@ -23,7 +23,11 @@ namespace EindOpdracht.Controllers
             _mapper = mapper;
         }
         // GET: api/Locations
+        /// <summary>
+        /// Gets all locations with images and landlords.
+        /// </summary>
         [HttpGet]
+        [Route("")]
         [Route("GetAll")]
         public async Task<ActionResult<IEnumerable<Location>>> GetLocation()
         {
@@ -34,6 +38,9 @@ namespace EindOpdracht.Controllers
             var locationDTOs = _mapper.Map<LocationDTO[]>(locations);
             return Ok(locationDTOs);
         }
+        /// <summary>
+        /// Gets the max price of all locations.
+        /// </summary>
         [HttpGet]
         [Route("GetMaxPrice")]
         public async Task<ActionResult<int>> GetMaxPrice(CancellationToken cancellationToken)
@@ -41,13 +48,9 @@ namespace EindOpdracht.Controllers
             var maxPrice = await _context.Locations.MaxAsync(l => l.PricePerDay, cancellationToken);
             return Ok(new { Price = maxPrice });
         }
-        [HttpGet]
-        [Route("GetMaxRooms")]
-        public async Task<ActionResult<int>> GetMaxRooms(CancellationToken cancellationToken)
-        {
-            var maxRooms = await _context.Locations.MaxAsync(l => l.Rooms, cancellationToken);
-            return Ok(new { Rooms = maxRooms });
-        }
+        /// <summary>
+        /// Returns DTO based on Search results
+        /// </summary>
         [HttpPost]
         [Route("Search")]
         public async Task<ActionResult<IEnumerable<Location>>> Search([FromBody] SearchDTO searchDto, CancellationToken cancellationToken)
@@ -74,6 +77,9 @@ namespace EindOpdracht.Controllers
             return Ok(locationDTOs);
         }
 
+        /// <summary>
+        /// Gets details of a location by Id.
+        /// </summary>
         [HttpGet]
         [Route("GetDetails/{id}")]
         public async Task<ActionResult<IEnumerable<Location>>> GetDetails(int id, CancellationToken cancellationToken)
@@ -91,11 +97,49 @@ namespace EindOpdracht.Controllers
             return Ok(locationDetailsDTO);
         }
 
-
-/*        [HttpGet]
-        [Route("UnAvailableDates/{id}")]
-        public async Task<ActionResult<IEnumerable<Location>>> UnAvailableDates(int id, CancellationToken cancellationToken)
+        /// <summary>
+        /// Shows UnAvailableDates Per LocationId
+        /// </summary>
+        [HttpGet]
+        [Route("UnAvailableDates/{locationId}")]
+        public async Task<ActionResult<UnAvailableDatesResponseDTO>> UnAvailableDates(int locationId, CancellationToken cancellationToken)
         {
-        }*/
+            var location = await _context.Locations
+                .FirstOrDefaultAsync(l => l.Id == locationId, cancellationToken);
+
+            if (location == null)
+            {
+                return NotFound();
+            }
+            var unAvailableDates = await GetUnAvailableDates(locationId, cancellationToken);
+
+            var responseDTO = new UnAvailableDatesResponseDTO
+            {
+                UnAvailableDates = unAvailableDates
+            };
+
+            return Ok(responseDTO);
+        }
+        // Helper Function
+        private async Task<List<DateTime>> GetUnAvailableDates(int locationId, CancellationToken cancellationToken)
+        {
+            var reservations = await _context.Reservations
+        .Where(r => r.LocationId == locationId &&
+                     r.EndDate >= DateTime.Today)
+        .ToListAsync(cancellationToken);
+
+            var unavailableDates = new List<DateTime>();
+
+            foreach (var reservation in reservations)
+            {
+                // Add all dates between the reservation's start and end dates to the unavailableDates list
+                for (DateTime date = reservation.StartDate.Date; date <= reservation.EndDate.Date; date = date.AddDays(1))
+                {
+                    unavailableDates.Add(date);
+                }
+            }
+
+            return unavailableDates;
+        }
     }
 }

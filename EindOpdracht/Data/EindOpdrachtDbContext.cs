@@ -168,6 +168,7 @@ namespace EindOpdracht.Data
                 }
                 );
             modelBuilder.Entity<Image>().HasData(
+                // 1st pic location 1
                 new Image
                 {
                     Id = 1,
@@ -175,6 +176,7 @@ namespace EindOpdracht.Data
                     IsCover = false,
                     LocationId = 1,
                 },
+                // 1st pic location 2
                 new Image
                 {
                     Id = 2,
@@ -182,6 +184,15 @@ namespace EindOpdracht.Data
                     IsCover = true,
                     LocationId = 2,
                 },
+                // 2nd pic location 2
+                new Image
+                {
+                    Id = 25,
+                    Url = "https://upload.wikimedia.org/wikipedia/commons/b/bd/Broadway_Luxury_and_Eadburgha_House_-_geograph.org.uk_-_6093435.jpg",
+                    IsCover = false,
+                    LocationId = 2,
+                },
+                // 1st pic location 3
                 new Image
                 {
                     Id = 3,
@@ -189,6 +200,7 @@ namespace EindOpdracht.Data
                     IsCover = false,
                     LocationId = 3,
                 },
+                // 2st pic location 1
                 new Image
                 {
                     Id = 5,
@@ -196,6 +208,7 @@ namespace EindOpdracht.Data
                     IsCover = true,
                     LocationId = 1,
                 },
+                // 2nd pic location 2
                 new Image
                 {
                     Id = 6,
@@ -210,8 +223,8 @@ namespace EindOpdracht.Data
                     Id = 7,
                     Url = "https://upload.wikimedia.org/wikipedia/commons/3/34/Elon_Musk_Royal_Society_%28crop2%29.jpg",
                     IsCover = false,
-                    LocationId = 1,
                     LandlordId = 1,
+                    LocationId = 1,
                 },
                 // Jeff Bezos Landlord image
                 new Image
@@ -219,8 +232,8 @@ namespace EindOpdracht.Data
                     Id = 8,
                     Url = "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Jeff_Bezos_2016_crop.jpg/640px-Jeff_Bezos_2016_crop.jpg",
                     IsCover = false,
-                    LocationId = 2,
                     LandlordId = 2,
+                    LocationId = 2,
                 },
                 // Trump landlord image
                 new Image
@@ -228,9 +241,10 @@ namespace EindOpdracht.Data
                     Id = 9,
                     Url = "https://upload.wikimedia.org/wikipedia/commons/0/0b/Donald_Trump_%2852250930172%29_%28cropped%29.jpg",
                     IsCover = false,
-                    LocationId = 3,
                     LandlordId = 3,
+                    LocationId = 3,
                 },
+                // 2nd pic location 3
                 new Image
                 {
                     Id = 10,
@@ -254,6 +268,7 @@ namespace EindOpdracht.Data
                     IsCover = false,
                     LocationId = 4,
                 },
+                // 1st pic location 5
                 new Image
                 {
                     Id = 13,
@@ -261,6 +276,15 @@ namespace EindOpdracht.Data
                     IsCover = true,
                     LocationId = 5,
                 },
+                // 2nd pic location 5
+                new Image
+                {
+                    Id = 22,
+                    Url = "https://upload.wikimedia.org/wikipedia/commons/5/57/Singapore_%28SG%29%2C_ArtScience_Museum_and_Marina_Bay_Sands_Hotel_--_2019_--_4695.jpg",
+                    IsCover = false,
+                    LocationId = 5,
+                },
+                // 1st pic location 6
                 new Image
                 {
                     Id = 14,
@@ -268,11 +292,28 @@ namespace EindOpdracht.Data
                     IsCover = true,
                     LocationId = 6,
                 },
+                // 2nd pic location 6
+                new Image
+                {
+                    Id = 23,
+                    Url = "https://upload.wikimedia.org/wikipedia/commons/5/57/Singapore_%28SG%29%2C_ArtScience_Museum_and_Marina_Bay_Sands_Hotel_--_2019_--_4695.jpg",
+                    IsCover = false,
+                    LocationId = 6,
+                },
+                // 1st pic location 7
                 new Image
                 {
                     Id = 15,
                     Url = "https://upload.wikimedia.org/wikipedia/commons/f/fa/Trump_Tower_Entrance_2015-08.jpg",
                     IsCover = true,
+                    LocationId = 7,
+                },
+                // 2nd pic location 7
+                new Image
+                {
+                    Id = 24,
+                    Url = "https://upload.wikimedia.org/wikipedia/commons/5/57/Singapore_%28SG%29%2C_ArtScience_Museum_and_Marina_Bay_Sands_Hotel_--_2019_--_4695.jpg",
+                    IsCover = false,
                     LocationId = 7,
                 },
                 // 1st pic location 8

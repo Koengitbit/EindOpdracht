@@ -5,6 +5,7 @@ using EindOpdracht.Profiles;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Reflection;
@@ -15,6 +16,13 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<EindOpdrachtDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("EindOpdrachtDbContext")));
 
+
+builder.Services.AddApiVersioning(options =>
+{
+    options.AssumeDefaultVersionWhenUnspecified = true;
+    options.ReportApiVersions = true;
+    options.ApiVersionReader = new QueryStringApiVersionReader("api-version");
+}).AddMvc();
 
 // Add services to the container.
 builder.Services.AddControllers().AddJsonOptions(options =>
@@ -42,7 +50,8 @@ builder.Services.AddSwaggerGen(options =>
         return versions.Any(v => $"{v}" == docName);
     });
 
-    options.OperationFilter<AddApiVersionQueryParamOperationFilter>();
+    var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
 });
 
 var app = builder.Build();
@@ -58,10 +67,11 @@ if (app.Environment.IsDevelopment())
     });
 }
 
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
-// Might need to change this Cors to the one in the weekly exercises (we'll see)
+
 app.UseCors(options => options.AllowAnyHeader().AllowAnyOrigin());
 
 app.MapControllers();

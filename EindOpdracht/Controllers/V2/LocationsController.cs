@@ -23,13 +23,13 @@ namespace EindOpdracht.Controllers.V2
         // GET: api/Locations
         [HttpGet]
         [Route("")]
-        [Route("GetNew")]
-        public async Task<ActionResult<IEnumerable<Location>>> GetLocation()
+        [Route("GetAll")]
+        public async Task<ActionResult<IEnumerable<Location>>> GetLocation(CancellationToken cancellationToken)
         {
             var locations = await _context.Locations
                                   .Include(l => l.Images) // Make sure to include the Images
                                   .Include(lan => lan.Landlord)
-                                  .ToListAsync();
+                                  .ToListAsync(cancellationToken);
             var locationDTOs = _mapper.Map<LocationDTOV2[]>(locations);
             return Ok(locationDTOs);
         }
