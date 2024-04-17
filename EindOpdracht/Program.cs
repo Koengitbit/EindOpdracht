@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Reflection;
+using System.Text.Json.Serialization;
 using WeekOpdracht;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,12 +17,12 @@ builder.Services.AddDbContext<EindOpdrachtDbContext>(options =>
 
 
 // Add services to the container.
-/*builder.Services.AddControllers();*/
 builder.Services.AddControllers().AddJsonOptions(options =>
 {
-    options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
+    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
 });
-builder.Services.AddAutoMapper(typeof(LocationProfile),typeof(LocationV2Profile));
+builder.Services.AddAutoMapper(typeof(LocationProfile), typeof(LocationV2Profile), typeof(LocationDetailProfile) );
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>

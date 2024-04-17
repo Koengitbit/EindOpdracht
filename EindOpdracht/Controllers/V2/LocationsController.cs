@@ -30,7 +30,7 @@ namespace EindOpdracht.Controllers.V2
                                   .Include(l => l.Images) // Make sure to include the Images
                                   .Include(lan => lan.Landlord)
                                   .ToListAsync();
-            var locationDTOs = _mapper.Map<LocationV2DTO[]>(locations);
+            var locationDTOs = _mapper.Map<LocationDTOV2[]>(locations);
             return Ok(locationDTOs);
         }
     }

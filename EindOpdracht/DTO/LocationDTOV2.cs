@@ -1,6 +1,6 @@
 ﻿namespace EindOpdracht.DTO
 {
-    public class LocationV2DTO
+    public class LocationDTOV2
     {
         public string Title { get; set; }
         public string SubTitle { get; set; }

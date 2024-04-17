@@ -45,7 +45,7 @@ namespace EindOpdracht.Data
                     Rooms = 5,
                     NumberOfGuests = 5,
                     PricePerDay = 500,
-                    Features = Features.Smoking, // Can hold multiple enums potentially (?)
+                    Features = Features.Smoking | Features.PetsAllowed | Features.TV | Features.Breakfast, // Can hold multiple enums
                     LocationType = LocationType.Cottage, // Single enum
                     LandlordId = 1
                 },
@@ -58,7 +58,7 @@ namespace EindOpdracht.Data
                     Rooms = 5,
                     NumberOfGuests = 5,
                     PricePerDay = 2000,
-                    Features = Features.Smoking,
+                    Features = Features.Wifi | Features.TV | Features.Breakfast | Features.Bath,
                     LocationType = LocationType.House,
                     LandlordId = 2
                 },
@@ -71,7 +71,7 @@ namespace EindOpdracht.Data
                     Rooms = 5,
                     NumberOfGuests = 5,
                     PricePerDay = 5,
-                    Features = Features.Smoking,
+                    Features = Features.Smoking | Features.PetsAllowed,
                     LocationType = LocationType.Room,
                     LandlordId = 3
                 },
@@ -83,48 +83,48 @@ namespace EindOpdracht.Data
                     Description = "Marina Bay Sands is an iconic luxury hotel and entertainment complex in Singapore, renowned for its distinctive architecture featuring three interconnected towers and a SkyPark. The complex includes a range of amenities such as the world's largest rooftop infinity pool, a museum, high-end shopping, dining options, a casino, and an observation deck with panoramic views of the city.",
                     Rooms = 2500,
                     NumberOfGuests = 5,
-                    PricePerDay = 300,
-                    Features = Features.Smoking,
+                    PricePerDay = 600,
+                    Features = Features.Wifi | Features.TV | Features.Breakfast | Features.Bath,
                     LocationType = LocationType.Hotel,
                     LandlordId = 3
                 },
                 new Location
                 {
                     Id = 5,
-                    Title = "Marina Bay Sands",
-                    SubTitle = "Luxury Hotel and Entertainment Complex",
-                    Description = "Marina Bay Sands is an iconic luxury hotel and entertainment complex in Singapore, renowned for its distinctive architecture featuring three interconnected towers and a SkyPark. The complex includes a range of amenities such as the world's largest rooftop infinity pool, a museum, high-end shopping, dining options, a casino, and an observation deck with panoramic views of the city.",
+                    Title = "NSRCC Chalets: Serene Getaway by the Sea",
+                    SubTitle = "Relaxing Retreat with Scenic Golf Views",
+                    Description = "Nestled along the picturesque coastline of Singapore, NSRCC Chalets offer a tranquil escape within the National Service Resort & Country Club complex. These chalets are designed for comfort and relaxation, providing a perfect blend of leisure and activity. Guests can enjoy modern amenities, spacious accommodations, and direct access to extensive golfing facilities. The serene setting is enhanced by stunning views of lush greenery and the sea, making it an ideal location for family vacations, golf retreats, and private gatherings.",
                     Rooms = 2500,
                     NumberOfGuests = 5,
-                    PricePerDay = 300,
+                    PricePerDay = 750,
                     Features = Features.Smoking,
-                    LocationType = LocationType.Hotel,
-                    LandlordId = 3
+                    LocationType = LocationType.Chalet,
+                    LandlordId = 1
                 },
                 new Location
                 {
                     Id = 6,
-                    Title = "Marina Bay Sands",
-                    SubTitle = "Luxury Hotel and Entertainment Complex",
-                    Description = "Marina Bay Sands is an iconic luxury hotel and entertainment complex in Singapore, renowned for its distinctive architecture featuring three interconnected towers and a SkyPark. The complex includes a range of amenities such as the world's largest rooftop infinity pool, a museum, high-end shopping, dining options, a casino, and an observation deck with panoramic views of the city.",
+                    Title = "Harborview Residences: Modern Living Redefined",
+                    SubTitle = "Contemporary Apartments with Panoramic Cityscapes",
+                    Description = "Harborview Residences offers a premium living experience in its modern apartment complex, strategically located to combine urban convenience with breathtaking views. This complex features a range of thoughtfully designed apartments that cater to diverse lifestyles, from bustling singles to growing families. Residents enjoy top-notch amenities including a fitness center, swimming pool, landscaped gardens, and a community clubhouse. The secure environment is complemented by easy access to local shopping, dining, and entertainment options, ensuring a balanced and vibrant lifestyle.",
                     Rooms = 2500,
                     NumberOfGuests = 5,
-                    PricePerDay = 300,
+                    PricePerDay = 200,
                     Features = Features.Smoking,
-                    LocationType = LocationType.Hotel,
-                    LandlordId = 3
+                    LocationType = LocationType.Appartment,
+                    LandlordId = 2
                 },
                 new Location
                 {
                     Id = 7,
-                    Title = "Marina Bay Sands",
-                    SubTitle = "Luxury Hotel and Entertainment Complex",
-                    Description = "Marina Bay Sands is an iconic luxury hotel and entertainment complex in Singapore, renowned for its distinctive architecture featuring three interconnected towers and a SkyPark. The complex includes a range of amenities such as the world's largest rooftop infinity pool, a museum, high-end shopping, dining options, a casino, and an observation deck with panoramic views of the city.",
+                    Title = "Trump Tower: Urban Opulence Redefined",
+                    SubTitle = "Prestigious Residence and Business Hub",
+                    Description = "Trump Tower stands as a symbol of luxury and power in the heart of New York City. This prestigious mixed-use skyscraper features a striking facade of reflective glass, housing 2500 rooms that include upscale residential units and corporate offices. The tower is known for its lavish interiors, including a six-story atrium adorned with pink marble and a 60-foot waterfall. Residents and visitors can enjoy first-rate amenities such as high-end shopping boutiques, fine dining restaurants, and exclusive access areas, all representing the pinnacle of urban opulence.",
                     Rooms = 2500,
                     NumberOfGuests = 5,
-                    PricePerDay = 300,
+                    PricePerDay = 100,
                     Features = Features.Smoking,
-                    LocationType = LocationType.Hotel,
+                    LocationType = LocationType.Appartment,
                     LandlordId = 3
                 },
                 new Location
@@ -135,10 +135,10 @@ namespace EindOpdracht.Data
                     Description = "Marina Bay Sands is an iconic luxury hotel and entertainment complex in Singapore, renowned for its distinctive architecture featuring three interconnected towers and a SkyPark. The complex includes a range of amenities such as the world's largest rooftop infinity pool, a museum, high-end shopping, dining options, a casino, and an observation deck with panoramic views of the city.",
                     Rooms = 2500,
                     NumberOfGuests = 5,
-                    PricePerDay = 300,
+                    PricePerDay = 185,
                     Features = Features.Smoking,
                     LocationType = LocationType.Hotel,
-                    LandlordId = 3
+                    LandlordId = 2
                 },
                 new Location
                 {
@@ -151,7 +151,7 @@ namespace EindOpdracht.Data
                     PricePerDay = 300,
                     Features = Features.Smoking,
                     LocationType = LocationType.Hotel,
-                    LandlordId = 3
+                    LandlordId = 1
                 },
                 new Location
                 {
@@ -162,9 +162,9 @@ namespace EindOpdracht.Data
                     Rooms = 2500,
                     NumberOfGuests = 2,
                     PricePerDay = 375,
-                    Features = Features.Smoking,
+                    Features = Features.TV | Features.Bath,
                     LocationType = LocationType.Hotel,
-                    LandlordId = 3
+                    LandlordId = 1
                 }
                 );
             modelBuilder.Entity<Image>().HasData(
@@ -253,6 +253,75 @@ namespace EindOpdracht.Data
                     Url = "https://upload.wikimedia.org/wikipedia/commons/5/57/Singapore_%28SG%29%2C_ArtScience_Museum_and_Marina_Bay_Sands_Hotel_--_2019_--_4695.jpg",
                     IsCover = false,
                     LocationId = 4,
+                },
+                new Image
+                {
+                    Id = 13,
+                    Url = "https://www.nsrcc.com.sg/sites/nsrcc.d8.mx.sg/files/block-images/Home_Bungalow.jpg",
+                    IsCover = true,
+                    LocationId = 5,
+                },
+                new Image
+                {
+                    Id = 14,
+                    Url = "https://upload.wikimedia.org/wikipedia/commons/1/14/Appartement_Chateau_Saint-Louis_04.jpg",
+                    IsCover = true,
+                    LocationId = 6,
+                },
+                new Image
+                {
+                    Id = 15,
+                    Url = "https://upload.wikimedia.org/wikipedia/commons/f/fa/Trump_Tower_Entrance_2015-08.jpg",
+                    IsCover = true,
+                    LocationId = 7,
+                },
+                // 1st pic location 8
+                new Image
+                {
+                    Id = 16,
+                    Url = "https://upload.wikimedia.org/wikipedia/commons/7/7e/Cricket_match_and_Marina_Bay_Sands_Hotel_in_Singapore.jpg",
+                    IsCover = true,
+                    LocationId = 8,
+                },
+                // 2nd pic location 8
+                new Image
+                {
+                    Id = 17,
+                    Url = "https://upload.wikimedia.org/wikipedia/commons/5/57/Singapore_%28SG%29%2C_ArtScience_Museum_and_Marina_Bay_Sands_Hotel_--_2019_--_4695.jpg",
+                    IsCover = false,
+                    LocationId = 8,
+                },
+                // 1st pic location 9
+                new Image
+                {
+                    Id = 18,
+                    Url = "https://upload.wikimedia.org/wikipedia/commons/7/7e/Cricket_match_and_Marina_Bay_Sands_Hotel_in_Singapore.jpg",
+                    IsCover = true,
+                    LocationId = 9,
+                },
+                // 2nd pic location 9
+                new Image
+                {
+                    Id = 19,
+                    Url = "https://upload.wikimedia.org/wikipedia/commons/5/57/Singapore_%28SG%29%2C_ArtScience_Museum_and_Marina_Bay_Sands_Hotel_--_2019_--_4695.jpg",
+                    IsCover = false,
+                    LocationId = 9,
+                },
+                // 1st pic location 10
+                new Image
+                {
+                    Id = 20,
+                    Url = "https://upload.wikimedia.org/wikipedia/commons/7/7e/Cricket_match_and_Marina_Bay_Sands_Hotel_in_Singapore.jpg",
+                    IsCover = true,
+                    LocationId = 10,
+                },
+                // 2nd pic location 10
+                new Image
+                {
+                    Id = 21,
+                    Url = "https://upload.wikimedia.org/wikipedia/commons/5/57/Singapore_%28SG%29%2C_ArtScience_Museum_and_Marina_Bay_Sands_Hotel_--_2019_--_4695.jpg",
+                    IsCover = false,
+                    LocationId = 10,
                 }
                 );
             modelBuilder.Entity<Landlord>().HasData(
@@ -277,6 +346,7 @@ namespace EindOpdracht.Data
                     LastName = "Trumpet",
                     Age = 90,
                 }
+
                 );
         }
     }
