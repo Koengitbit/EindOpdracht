@@ -2,6 +2,8 @@ using Asp.Versioning;
 using AutoMapper;
 using EindOpdracht.Data;
 using EindOpdracht.Profiles;
+using EindOpdracht.Repository;
+using EindOpdracht.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -29,6 +31,11 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 {
     options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
 });
+
+builder.Services.AddScoped<EindOpdrachtRepository>();
+builder.Services.AddScoped<SearchService>();
+builder.Services.AddScoped<ReservationService>();
+
 builder.Services.AddAutoMapper(typeof(LocationProfile), typeof(LocationV2Profile), typeof(LocationDetailProfile) );
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

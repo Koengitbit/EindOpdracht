@@ -3,6 +3,7 @@ using AutoMapper;
 using EindOpdracht.Data;
 using EindOpdracht.DTO;
 using EindOpdracht.Models;
+using EindOpdracht.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,13 +14,13 @@ namespace EindOpdracht.Controllers.V2
     [ApiController]
     public class LocationsController : Controller
     {
-        private readonly EindOpdrachtDbContext _context;
-        private readonly IMapper _mapper;
-        public LocationsController(EindOpdrachtDbContext context, IMapper mapper)
+        private readonly SearchService _searchService;
+        public LocationsController(SearchService searchService)
         {
-            _mapper = mapper;
-            _context = context;
+            ArgumentNullException.ThrowIfNull(searchService);
+            _searchService = searchService;
         }
+
         // GET: api/Locations
         /// <summary>
         /// Gets all locations for version 2 with images and landlords.
@@ -29,11 +30,7 @@ namespace EindOpdracht.Controllers.V2
         [Route("GetAll")]
         public async Task<ActionResult<IEnumerable<Location>>> GetLocation(CancellationToken cancellationToken)
         {
-            var locations = await _context.Locations
-                                  .Include(l => l.Images)
-                                  .Include(lan => lan.Landlord)
-                                  .ToListAsync(cancellationToken);
-            var locationDTOs = _mapper.Map<LocationDTOV2[]>(locations);
+            var locationDTOs = await _searchService.GetLocationsV2Async(cancellationToken);
             return Ok(locationDTOs);
         }
     }
