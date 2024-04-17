@@ -21,7 +21,7 @@ namespace EindOpdracht.Controllers
             _mapper = mapper;
         }
         /// <summary>
-        /// Make customer, Make reservation,
+        /// Make customer if customer doesn't exist and make a reservation,
         /// </summary>
         [HttpPost]
         [Route("")]
